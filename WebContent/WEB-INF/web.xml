@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+"http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app>
+	<servlet>
+		<servlet-name>Hello</servlet-name>
+		<servlet-class>com.caucho.hessian.server.HessianServlet</servlet-class>
+		<init-param>
+			<param-name>home-class</param-name>
+			<param-value>com.kcpt.hessian.service.IHelloImpl</param-value>
+		</init-param>
+		<init-param>
+			<param-name>home-api</param-name>
+			<param-value>com.kcpt.hessian.service.IHello</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Hello</servlet-name>
+		<url-pattern>/Hello</url-pattern>
+	</servlet-mapping>
+</web-app>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<INSUREQ>
+	#set( $base = $app.getBase() ) 
+	#set( $vhl=$app.getVhl() )
+	#set( $applicant=$app.getApplicant() )
+	#set( $product=$app.getProduct() )
+	<HEAD>
+		<USER_NAME>$!{dataUtils.getUserName()}</USER_NAME>
+		<USER_PSW>$!{dataUtils.getPassword()}</USER_PSW>
+		<BUSINESS_CODE>$!{base.getBusinessCode()}</BUSINESS_CODE>
+	</HEAD>
+	<MAIN>
+		<TRANSRNO>3001</TRANSRNO>
+		<SERIALDECIMAL>$!{dataUtils.getSerialDecimal()}</SERIALDECIMAL>
+		<TRANSRDATE>$!{dataUtils.getTransDate()}</TRANSRDATE>
+		<CHANNELCODE>1001</CHANNELCODE>
+	</MAIN>
+	<BASE>
+		<CITYCODE></CITYCODE>
+		<COOPERATE></COOPERATE>
+		<PRODUCTCODE>$!{product.getProductCode()}</PRODUCTCODE>
+		<COMBOCODE>$!{product.getComboCode()}</COMBOCODE>
+		<COUNT>$!{base.getCount()}</COUNT>
+		<STARTDATE>$!{dataUtils.dateToFormat($!{base.getInsBeginDate()},"yyyy-MM-dd HH:mm:ss")}</STARTDATE>
+		<ENDDATE>$!{dataUtils.dateToFormat($!{base.getInsEndDate()},"yyyy-MM-dd HH:mm:ss")}</ENDDATE>
+		<AMOUMT>$!{base.getTotAmt()}</AMOUMT>
+		<PREMIUM>$!{base.getTotPrm()}</PREMIUM>
+		<VEHICLENO>$!{vhl.getFrameNo()}</VEHICLENO>
+		<PLATENO>$!{vhl.getPlateNo()}</PLATENO>
+	</BASE>
+	<APPLICANT>
+		<NAME>$!{applicant.getApplicantName()}</NAME>
+		<TYPE>$!{applicant.getCustomerMark()}</TYPE>
+		<ADDRESS>$!{applicant.getContactsAddr()}</ADDRESS>
+		<MOBILE>$!{applicant.getMobilePhone()}</MOBILE>
+		<IDTYPE>$!{applicant.getCertfCls()}</IDTYPE>
+		<IDCARD>$!{applicant.getCertfCode()}</IDCARD>
+		<PROVINCECODE>$!{applicant.getProvince()}</PROVINCECODE>
+		<CITYCODE>$!{applicant.getCity()}</CITYCODE>
+		<DISTRICTCODE>$!{applicant.getCounty()}</DISTRICTCODE>
+		<RELATION>$!{applicant.getRelationToInsured()}</RELATION>
+	</APPLICANT>
+	<INSUREDS>
+		#foreach($insured in $app.getInsured())
+		<INSURED>
+			<NAME>$!{insured.getInsuredName()}</NAME>
+			<IDTYPE>$!{insured.getCertfCls()}</IDTYPE>
+			<IDCARD>$!{insured.getCertfCode()}</IDCARD>
+			<ADDRESS>$!{insured.getContactsAddr()}</ADDRESS>
+			<MOBILE>$!{insured.getMobilePhone()}</MOBILE>
+			<ISADULT>$!{insured.getIsAdult()}</ISADULT>
+			<PROVINCECODE >$!{insured.getProvince()}</PROVINCECODE >
+			<CITYCODE>$!{insured.getCity()}</CITYCODE>
+			<DISTRICTCODE>$!{insured.getCounty()}</DISTRICTCODE>
+			<C_INSRNT_WORKCODE>$!{insured.getProfessionCode()}</C_INSRNT_WORKCODE>
+		</INSURED>
+	</INSUREDS>
+</INSUREQ>
